@@ -26,8 +26,6 @@ void	*ft_memmove(void *str1, const void *str2, size_t n)
 		strch1[i] = strch2[i];
 		i++;
 	}
-	while (strch1[i] != '\0')
-		i++;
 	strch1[i] = '\0';
 }
 
