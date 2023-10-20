@@ -25,16 +25,3 @@ char *	ft_strnstr(const char *big, const char *little, size_t len)
 	}
 	return (0);
 }
-
-#include <string.h>
-#include <stdio.h>
-
-int main()
-{
-    char first[18] = "Teste com a maior";
-    char last[6] = "maior";
-    char *strnstr = ft_strnstr(first, last, 100);
-	printf("valor de strnstr é : %s", strnstr);
-
-    return(0);
-}

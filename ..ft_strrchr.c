@@ -1,6 +1,4 @@
 #include "libft.h"
-//PARA ESSA FUNÇÃO SERIA INTERESSANTE JÁ TER O ARQUIVO .H PARA USAR
-#include "libft.h"
 
 char *ft_strrchr(const char *str, int c)
 {
