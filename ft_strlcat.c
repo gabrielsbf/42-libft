@@ -11,28 +11,39 @@
 /* ************************************************************************** */
 
 #include "libft.h"
-//LEAK OF MEMORY
-size_t	ft_strlcat(char *dest, const char *src, size_t size)
+
+static size_t	ft_static_strlen(char *str)
 {
 	size_t	i;
-	size_t	dest_len;
-	size_t	total_len;
 
 	i = 0;
-	dest_len = 0;
-	total_len = 0;
-	while (dest[dest_len] != '\0' && size > dest_len)
-		dest_len++;
-	while (src[i] != '\0' && size > dest_len)
-	{
-		dest[dest_len] = src[i];
-		dest_len++;
+	while (str[i] != '\0')
 		i++;
-	}
-	while (src[i] != '\0')
+	return (i);
+}
+
+size_t	ft_strlcat(char *dest, const char *src, size_t size)
+{
+	size_t	src_itr;
+	size_t	dest_itr;
+	size_t	dest_len;
+
+	dest_len = ft_static_strlen(dest);
+	dest_itr = dest_len;
+	src_itr = 0;
+	if (size < dest_itr)
+		return (ft_static_strlen((char *)src) + size);
+	while (src[src_itr] != '\0' && (size - 1) > dest_itr)
 	{
-		total_len++;
-		i++;
+		dest[dest_itr] = src[src_itr];
+		dest_itr++;
+		src_itr++;
 	}
-	return (dest_len + total_len);
+	while (dest_itr < size)
+	{
+		dest[dest_itr] = '\0';
+		dest_itr++;
+	}
+	
+	return (dest_len + ft_static_strlen((char *)src));
 }

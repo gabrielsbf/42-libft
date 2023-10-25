@@ -23,10 +23,10 @@ char	*ft_strrchr(const char *str, int c)
 	{
 		i++;
 	}
-	while (i > 0)
+	while (i >= 0)
 	{
 		if (str[i] == c)
-			return (strc + (i + 1));
+			return (strc + (i));
 		i--;
 	}
 	return (0);

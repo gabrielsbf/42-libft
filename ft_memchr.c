@@ -1,25 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strncmp.c                                       :+:      :+:    :+:   */
+/*   ft_memchr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gabrfern <gabrfern@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/10/23 19:14:45 by gabrfern          #+#    #+#             */
-/*   Updated: 2023/10/23 19:14:47 by gabrfern         ###   ########.fr       */
+/*   Created: 2023/10/24 17:46:26 by gabrfern          #+#    #+#             */
+/*   Updated: 2023/10/24 17:46:30 by gabrfern         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int	ft_strncmp(const char *s1, const char *s2, size_t n)
+void	*ft_memchr( const void *str, int ch, size_t n )
 {
-	if (n == 0)
-		return (0);
-	while (n-- > 1 && *s1 == *s2)
+	unsigned char	*ptr;
+	unsigned char	c;
+	size_t			limit;
+
+	c = (unsigned char)ch;
+	limit = 0;
+	ptr = (unsigned char *)str;
+	while (*ptr && n > limit)
 	{
-		s1++;
-		s2++;
+		if (*ptr == c)
+			return ((void *)str + limit);
+		ptr++;
+		limit++;
 	}
-	return ((unsigned char)*s1 - (unsigned char)*s2);
+	return (NULL);
 }

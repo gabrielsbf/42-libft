@@ -12,37 +12,22 @@
 
 #include "libft.h"
 
-void	*ft_memmove(void *str1, const void *str2, size_t n)
+void	*ft_memmove(void *dest, const void *src, size_t n)
 {
-	char	*strch1;
-	char	*strch2;
-	int		i;
+	unsigned char	*dest_p;
+	unsigned char	*src_p;
+	size_t			limit;
 
-	strch1 = (char *)str1;
-	strch2 = (char *)str2;
-	i = 0;
-	while (strch2[i] != '\0' && i < (n))
+	dest_p = (unsigned char *)dest;
+	src_p = (unsigned char *)src;
+	limit = 0;
+
+	while (limit < n)
 	{
-		strch1[i] = strch2[i];
-		i++;
+		*dest_p = *src_p;
+		src_p++;
+		dest_p++;
+		limit++;
 	}
-	strch1[i] = '\0';
-}
-
-
-#include <string.h>
-#include <stdio.h>
-int	main()
-{
-	char src_or[7] = "teste1";
-	char dest_or[10] = "teste 552";
-
-	char src[7] = "teste1";
-	char dest[10] = "teste 552";
-
-	memmove(dest_or, src_or,10);
-	printf("-------------função library-------------\nsrc_or: %s\ndest_or: %s\n", src_or, dest_or);
-	ft_memmove(dest, src,10);
-	printf("--------------ft_function--------------\nsrc: %s\ndest: %s\n", src, dest);
-	return 0;
+	return (dest);
 }
