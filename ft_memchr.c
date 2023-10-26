@@ -24,7 +24,7 @@ void	*ft_memchr( const void *str, int ch, size_t n )
 	while (*ptr && n > limit)
 	{
 		if (*ptr == c)
-			return ((void *)str + limit);
+			return ((void *)ptr);
 		ptr++;
 		limit++;
 	}
