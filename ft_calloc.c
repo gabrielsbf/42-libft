@@ -1,37 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_memcmp.c                                        :+:      :+:    :+:   */
+/*   ft_calloc.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gabrfern <gabrfern@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/10/26 18:03:04 by gabrfern          #+#    #+#             */
-/*   Updated: 2023/10/26 18:03:05 by gabrfern         ###   ########.fr       */
+/*   Created: 2023/10/26 19:36:53 by gabrfern          #+#    #+#             */
+/*   Updated: 2023/10/26 19:36:55 by gabrfern         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int	ft_memcmp(const void *s1, const void *s2, size_t n)
+void	*ft_calloc(size_t num, size_t size)
 {
-	unsigned char	*p_s1;
-	unsigned char	*p_s2;
-	size_t			limit;
+	size_t	i;
+	char	*ptr;
 
-	limit = 0;
-	p_s1 = (unsigned char *)s1;
-	p_s2 = (unsigned char *)s2;
-	if (n == 0)
-		return (0);
-	while (p_s1 && p_s2 && limit < n)
+	i = 0;
+	ptr = (char *)malloc(num * size);
+	while (i < (num * size))
 	{
-		if (*p_s1 != *p_s2)
-			return (*p_s1 - *p_s2);
-		limit++;
-		p_s1++;
-		p_s2++;
+		*ptr = 0;
+		ptr++;
+		i++;
 	}
-	p_s1--;
-	p_s2--;
-	return (*p_s1 - *p_s2);
+	return ((void *)ptr);
 }

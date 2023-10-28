@@ -1,37 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_memcmp.c                                        :+:      :+:    :+:   */
+/*   ft_strdup.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gabrfern <gabrfern@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/10/26 18:03:04 by gabrfern          #+#    #+#             */
-/*   Updated: 2023/10/26 18:03:05 by gabrfern         ###   ########.fr       */
+/*   Created: 2023/10/26 18:11:01 by gabrfern          #+#    #+#             */
+/*   Updated: 2023/10/26 18:11:04 by gabrfern         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int	ft_memcmp(const void *s1, const void *s2, size_t n)
+char	*ft_strdup(const char *s)
 {
-	unsigned char	*p_s1;
-	unsigned char	*p_s2;
-	size_t			limit;
+	char	*ptr;
+	size_t	char_ln;
+	size_t	limit;
 
 	limit = 0;
-	p_s1 = (unsigned char *)s1;
-	p_s2 = (unsigned char *)s2;
-	if (n == 0)
-		return (0);
-	while (p_s1 && p_s2 && limit < n)
+	char_ln = (size_t)ft_strlen((char *)s);
+	ptr = (char *)malloc((char_ln * sizeof(char)) + 1);
+	if (!(ptr))
+		return (NULL);
+	while (limit <= char_ln)
 	{
-		if (*p_s1 != *p_s2)
-			return (*p_s1 - *p_s2);
+		ptr[limit] = *s;
+		s++;
 		limit++;
-		p_s1++;
-		p_s2++;
 	}
-	p_s1--;
-	p_s2--;
-	return (*p_s1 - *p_s2);
+	return (ptr);
 }
