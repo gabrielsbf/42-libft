@@ -22,6 +22,7 @@ char	*ft_strnstr(const char *big, const char *little, size_t len);
 char	*ft_strchr(const char *str, int c);
 char	*ft_strdup(const char *s);
 char	*ft_substr(char const *s, unsigned int start, size_t len);
+char	*ft_strjoin(char const *s1, char const *s2);
 int		ft_atoi(const char *str);
 int		ft_isalnum(int c);
 int		ft_isalpha(int c);

@@ -6,44 +6,30 @@
 /*   By: gabrfern <gabrfern@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/23 19:12:56 by gabrfern          #+#    #+#             */
-/*   Updated: 2023/10/23 19:12:58 by gabrfern         ###   ########.fr       */
+/*   Updated: 2023/10/23 20:58:28 by gabrfern         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
-
-static size_t	ft_static_strlen(char *str)
-{
-	size_t	i;
-
-	i = 0;
-	while (str[i] != '\0')
-		i++;
-	return (i);
-}
+//LEAK OF MEMORY
 
 size_t	ft_strlcat(char *dest, const char *src, size_t size)
 {
-	size_t	src_itr;
-	size_t	dest_itr;
+	size_t	i;
 	size_t	dest_len;
+	size_t	src_len;
 
-	dest_len = ft_static_strlen(dest);
-	dest_itr = dest_len;
-	src_itr = 0;
-	if (size < dest_itr)
-		return (ft_static_strlen((char *)src) + size);
-	while (src[src_itr] != '\0' && (size - 1) > dest_itr)
+	src_len = ft_strlen((char *)src);
+	dest_len = ft_strlen(dest);
+	i = 0;
+	if (size <= dest_len)
+		return (src_len + size);
+	while (src[i] != '\0' && size > (dest_len + i + 1))
 	{
-		dest[dest_itr] = src[src_itr];
-		dest_itr++;
-		src_itr++;
+		dest[dest_len + i] = src[i];
+		i++;
 	}
-	while (dest_itr < size)
-	{
-		dest[dest_itr] = '\0';
-		dest_itr++;
-	}
-	
-	return (dest_len + ft_static_strlen((char *)src));
+		dest[dest_len + i] = '\0';
+	return (dest_len + src_len);
 }
+// 1, 3, 4 e ultima
