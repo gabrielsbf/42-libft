@@ -29,7 +29,7 @@ size_t	ft_strlcat(char *dest, const char *src, size_t size)
 		dest[dest_len + i] = src[i];
 		i++;
 	}
-		dest[dest_len + i] = '\0';
+	dest[dest_len + i] = '\0';
 	return (dest_len + src_len);
 }
 // 1, 3, 4 e ultima
