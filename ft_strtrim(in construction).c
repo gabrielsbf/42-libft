@@ -17,16 +17,22 @@
 
 static unsigned int	ft_trim_count(char const *s1, char const *set)
 {
-	char	*ptr;
-	int		itr_set;
+	unsigned int	count_t;
+	unsigned int	count_set;
 
-	itr_set = 0;
-	
-	while(set[itr_set] != '\0')
+	count_set = 0;
+	count_t = 0;
+	while(*set)
 	{
-		ptr = ft_strrchr(s1, set[itr_set]);
+		while (ft_strrchr(set, *(int)s1) != 0)
+		{
+			count_t++;
+			s1++;
+		}
+		count_set = 0
+		set++;
+		
 	}
-
 }
 // Peguei uma parte da função principal e cortei pra cá!
 // static void	itr_set(unsigned int set_itr, char const *s1, char const *set)
