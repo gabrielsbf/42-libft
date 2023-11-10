@@ -15,9 +15,7 @@
 char	*ft_strrchr(const char *str, int c)
 {
 	int		i;
-	char	*strc;
 
-	strc = (char *)str;
 	i = 0;
 	while (str[i] != '\0')
 	{
@@ -26,7 +24,7 @@ char	*ft_strrchr(const char *str, int c)
 	while (i >= 0)
 	{
 		if (str[i] == c)
-			return (strc + (i));
+			return ((char *)&str[i]);
 		i--;
 	}
 	return (0);
