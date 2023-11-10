@@ -12,14 +12,20 @@
 
 #include "libft.h"
 
-void	ft_striteri(char *s, void (*f)(unsigned int, char*))
+char	*ft_strmapi(char const *s, char (*f)(unsigned int, char))
 {
 	unsigned int	i;
+	char			*ptr;
 
 	i = 0;
+	ptr = (char *)malloc((ft_strlen((char *)s) + 1) * sizeof(char));
+	if (!ptr)
+		return (NULL);
 	while (s[i] != '\0')
 	{
-		(f)(i, &s[i]);
+		ptr[i] = (f)(i, (char)s[i]);
 		i++;
 	}
+	ptr[i] = '\0';
+	return (ptr);
 }
