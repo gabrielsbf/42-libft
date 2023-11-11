@@ -21,7 +21,7 @@ void	*ft_memchr( const void *str, int ch, size_t n )
 	c = (unsigned char)ch;
 	limit = 0;
 	ptr = (unsigned char *)str;
-	while (*ptr && n > limit)
+	while (n > limit)
 	{
 		if (*ptr == c)
 			return ((void *)ptr);

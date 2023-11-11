@@ -11,7 +11,6 @@
 /* ************************************************************************** */
 
 #include "libft.h"
-//LEAK OF MEMORY
 
 size_t	ft_strlcat(char *dest, const char *src, size_t size)
 {
@@ -19,6 +18,8 @@ size_t	ft_strlcat(char *dest, const char *src, size_t size)
 	size_t	dest_len;
 	size_t	src_len;
 
+	if ((!dest) && size == 0)
+		return (0);
 	src_len = ft_strlen((char *)src);
 	dest_len = ft_strlen(dest);
 	i = 0;
@@ -32,4 +33,3 @@ size_t	ft_strlcat(char *dest, const char *src, size_t size)
 	dest[dest_len + i] = '\0';
 	return (dest_len + src_len);
 }
-// 1, 3, 4 e ultima

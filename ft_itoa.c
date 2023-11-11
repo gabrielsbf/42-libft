@@ -54,6 +54,8 @@ char	*ft_itoa(int n)
 
 	last_n = count_numb(n);
 	ptr = ft_calloc(last_n + 1, sizeof(char));
+	if (!ptr)
+		return (NULL);
 	ptr[last_n] = 0;
 	is_intmin(n, ptr, last_n);
 	if (n == 0)

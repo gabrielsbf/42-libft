@@ -19,11 +19,11 @@ void	*ft_memset(void *s, int c, size_t n)
 
 	limit = 0;
 	p_mem = (unsigned char *)s;
-	while (*p_mem && n > limit)
+	while (n > limit)
 	{
 		*p_mem = c;
-		p_mem++;
 		limit++;
+		p_mem++;
 	}
 	return (s);
 }
