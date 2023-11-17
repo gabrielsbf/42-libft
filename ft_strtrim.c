@@ -22,6 +22,12 @@ char	*ft_strtrim(char const *s1, char const *set)
 	i_last = ft_strlen((char *)s1) - 1;
 	while (ft_strchr(set, s1[i_begin]) != 0)
 		i_begin++;
+	if(i_begin > i_last)
+	{
+		ptr = ft_calloc(1, sizeof(char));
+		*ptr = '\0';
+		return (ptr);
+	}
 	while (ft_strrchr(set, s1[i_last]) != 0)
 		i_last--;
 	ptr = ft_calloc((size_t)(i_last - i_begin + 2), sizeof(char));
@@ -30,3 +36,4 @@ char	*ft_strtrim(char const *s1, char const *set)
 	ptr = ft_substr(s1, i_begin, (size_t)i_last - i_begin + 1);
 	return (ptr);
 }
+
