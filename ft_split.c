@@ -79,8 +79,11 @@ static char **case_null(char **ptr_arr)
 	return (ptr_arr);
 }
 
-static char **free_ptr(char **ptr_arr, unsigned int i)
+static char **do_malloc(char **ptr_arr, unsigned int i, char const *s, char c)
 {
+	ptr_arr[i] = (char *)malloc((num_char(s, c, i) + 1) * sizeof(char));
+		if (!ptr_arr[i])
+			return (free_ptr(ptr_arr, i));
 	while (i >= 0)
 		free(ptr_arr[i--]);
 	free(ptr_arr);
