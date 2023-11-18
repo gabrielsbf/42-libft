@@ -22,21 +22,21 @@ static unsigned int	num_arr(const char *str, char c)
 	char_count = 0;
 	i = 0;
 	if (c == '\0')
-		return (1);
+	return (1);
 	while (str[i])
 	{
-		if (str[i] != c)
-			char_count++;
-		if (str[i] == c && char_count > 0)
+		if (str[i] == c && char_count >= 1)
 		{
-			c_encounter++;
 			char_count = 0;
+			c_encounter++;
 		}
+		if (str[i] == c && char_count == 0)
+			char_count = 0;
+		else
+			char_count++;
 		i++;
 	}
-	if(char_count > 0)
-		c_encounter++;
-	return (c_encounter);
+	return (c_encounter + 1);
 }
 
 
