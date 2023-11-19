@@ -79,15 +79,29 @@ static char **case_null(char **ptr_arr)
 	return (ptr_arr);
 }
 
-static char **do_malloc(char **ptr_arr, unsigned int i, char const *s, char c)
+static char **do_malloc(char const *s, char c)
 {
-	ptr_arr[i] = (char *)malloc((num_char(s, c, i) + 1) * sizeof(char));
+	char **	ptr_arr;
+	int		i;
+
+	i = 0;
+	ptr_arr = (char **)malloc((num_arr(s, c) + 1) * sizeof(char *));
+	if (!ptr_arr)
+		return (NULL);
+	while (i < (int)num_arr(s, c))
+	{
+		ptr_arr[i] = (char *)malloc((num_char(s, c, i) + 1) * sizeof(char));
 		if (!ptr_arr[i])
-			return (free_ptr(ptr_arr, i));
-	while (i >= 0)
-		free(ptr_arr[i--]);
-	free(ptr_arr);
-	return (NULL);
+		{
+			while (i >= 0)
+				free(ptr_arr[i--]);
+			free(ptr_arr);
+			return (NULL);
+		}
+		i++;
+	}
+	ptr_arr[i] = NULL;
+	return (ptr_arr);
 }
 
 char	**ft_split(char const *s, char c)
@@ -99,16 +113,13 @@ char	**ft_split(char const *s, char c)
 
 	i = 0;
 	index_s = 0;
-	ptr_arr = (char **)malloc((num_arr(s, c) + 1) * sizeof(char *));
+	ptr_arr = do_malloc(s, c);
 	if (!ptr_arr)
 		return (NULL);
 	if (c == '\0')
 		return (case_null(ptr_arr));
 	while (i < num_arr(s, c))
 	{
-		ptr_arr[i] = (char *)malloc((num_char(s, c, i) + 1) * sizeof(char));
-		if (!ptr_arr[i])
-			return (free_ptr(ptr_arr, i));
 		i_char = 0;
 		while(i_char < num_char(s,c,i))
 		{
@@ -118,7 +129,17 @@ char	**ft_split(char const *s, char c)
 		}
 	ptr_arr[i++][i_char] = '\0';
 	}
-	ptr_arr[i] = NULL;
 	return (ptr_arr);
 }
 
+int main ()
+{
+	char *s = "";
+	char **result = ft_split(s, ' ');
+
+	while(*result)
+	{
+		printf("Valor de resultado é >> %s\n", *result);
+		result++;
+	}
+}
