@@ -15,6 +15,10 @@ OBJS=$(SRCS:.c=.o)
 
 all: $(NAME)
 
+so:
+	$(CC) -nostartfiles -fPIC $(CFLAGS) $(SRCS)
+	gcc -nostartfiles -shared -o libft.so $(OBJS)
+
 $(NAME): $(OBJS)
 	ar rc $(NAME) $(OBJS)
 
@@ -30,6 +34,3 @@ fclean: clean
 re : fclean $(NAME)
 
 .PHONY:  all clean fclean re
-so:
-	$(CC) -nostartfiles -fPIC $(CFLAGS) $(SRCS)
-	gcc -nostartfiles -shared -o libft.so $(OBJS)

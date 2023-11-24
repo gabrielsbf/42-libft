@@ -16,25 +16,26 @@ char	*ft_strnstr(const char *big, const char *little, size_t len)
 {
 	size_t	i_big;
 	size_t	i_little;
-	char	*str;
+	char	*c_big;
 
-	str = (char *)big;
+	c_big = (char *)big;
 	i_big = 0;
-	i_little = 0;
-	if (*little == 0 || ((!str) && len == 0))
-		return ((char *)big);
-	while (str[i_big] != '\0')
+	if (*little == 0 || ((!c_big) && len == 0))
+		return ((char *)c_big);
+	while (c_big[i_big] != '\0' && len > i_big)
 	{
-		while (str[i_big] == little[i_little]
-			&& len > i_big && str[i_big] != '\0')
+		i_little = 0;
+		while (c_big[i_big] == little[i_little]
+			&& len > i_big && c_big[i_big] != '\0')
 		{
 			i_big++;
 			i_little++;
 		}
 		if (little[i_little] == '\0')
-			return (str + (i_big - i_little));
+			return (&c_big[i_big - i_little]);
+		if (c_big[i_big] == little[0])
+			i_big--;
 		i_big++;
-		i_little = 0;
 	}
 	return (0);
 }

@@ -19,14 +19,13 @@ char	*ft_strdup(const char *s)
 	size_t	limit;
 
 	limit = 0;
-	char_ln = (size_t)ft_strlen((char *)s);
-	ptr = (char *)malloc((char_ln * sizeof(char)) + 1);
+	char_ln = ft_strlen(s);
+	ptr = (char *)malloc((char_ln + 1) * sizeof(char));
 	if (!(ptr))
 		return (NULL);
 	while (limit <= char_ln)
 	{
-		ptr[limit] = *s;
-		s++;
+		ptr[limit] = *(s + limit);
 		limit++;
 	}
 	return (ptr);

@@ -25,11 +25,9 @@ int	ft_memcmp(const void *s1, const void *s2, size_t n)
 		return (0);
 	while (limit < n)
 	{
-		if (*p_s1 != *p_s2)
-			return (*p_s1 - *p_s2);
+		if (*(p_s1 + limit) != *(p_s2 + limit))
+			return (*(p_s1 + limit) - *(p_s2 + limit));
 		limit++;
-		p_s1++;
-		p_s2++;
 	}
 	return (0);
 }

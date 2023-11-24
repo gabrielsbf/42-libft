@@ -14,7 +14,7 @@
 
 static unsigned int	num_arr(const char *str, char c)
 {
-	int				i;
+	unsigned int	i;
 	unsigned int	char_count;
 	unsigned int	c_encounter;
 
@@ -34,16 +34,15 @@ static unsigned int	num_arr(const char *str, char c)
 		}
 		i++;
 	}
-	if(char_count > 0)
+	if (char_count > 0)
 		c_encounter++;
 	return (c_encounter);
 }
 
-
 static unsigned int	num_char(const char *str, char c, unsigned int index)
 {
 	unsigned int	i_arr;
-	int				i;
+	unsigned int	i;
 	unsigned int	char_count;
 
 	char_count = 0;
@@ -58,7 +57,7 @@ static unsigned int	num_char(const char *str, char c, unsigned int index)
 		if (str[i] == c && char_count > 0)
 		{
 			if (i_arr == index)
-				break;
+				break ;
 			i_arr++;
 			char_count = 0;
 		}
@@ -67,23 +66,34 @@ static unsigned int	num_char(const char *str, char c, unsigned int index)
 	return (char_count);
 }
 
-static char **case_null(char **ptr_arr)
+static char	**case_null(char **ptr_arr, char const *s)
 {
-	ptr_arr[0] = malloc(1 * sizeof(char *));
-	if(!(ptr_arr[0]))
+	if (ft_strlen(s) > 0)
 	{
-		free(ptr_arr);
-		return (NULL);
+		ptr_arr[0] = malloc((ft_strlen(s) + 1) * sizeof(char *));
+		ft_strlcpy(ptr_arr[0], s, ft_strlen(s) + 1);
+		return (ptr_arr);
 	}
-	ptr_arr[0] = NULL;
-	return (ptr_arr);
+	else
+	{
+		ptr_arr[0] = malloc(1 * sizeof(char *));
+		if (!(ptr_arr[0]))
+		{
+			free(ptr_arr);
+			return (NULL);
+		}
+		ptr_arr[0] = NULL;
+		return (ptr_arr);
+	}
 }
 
-static char **do_malloc(char const *s, char c)
+static char	**do_malloc(char const *s, char c)
 {
-	char **	ptr_arr;
+	char	**ptr_arr;
 	int		i;
 
+	if (!s)
+		return (NULL);
 	i = 0;
 	ptr_arr = (char **)malloc((num_arr(s, c) + 1) * sizeof(char *));
 	if (!ptr_arr)
@@ -116,30 +126,18 @@ char	**ft_split(char const *s, char c)
 	ptr_arr = do_malloc(s, c);
 	if (!ptr_arr)
 		return (NULL);
-	if (c == '\0')
-		return (case_null(ptr_arr));
+	if (c == '\0' || !s)
+		return (case_null(ptr_arr, s));
 	while (i < num_arr(s, c))
 	{
 		i_char = 0;
-		while(i_char < num_char(s,c,i))
+		while (i_char < num_char(s, c, i))
 		{
 			while (*(s + index_s) == c)
 				index_s++;
 			ptr_arr[i][i_char++] = *(s + index_s++);
 		}
-	ptr_arr[i++][i_char] = '\0';
+		ptr_arr[i++][i_char] = '\0';
 	}
 	return (ptr_arr);
-}
-
-int main ()
-{
-	char *s = "";
-	char **result = ft_split(s, ' ');
-
-	while(*result)
-	{
-		printf("Valor de resultado é >> %s\n", *result);
-		result++;
-	}
 }

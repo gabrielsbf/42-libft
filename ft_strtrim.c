@@ -15,14 +15,16 @@
 char	*ft_strtrim(char const *s1, char const *set)
 {
 	char	*ptr;
-	int		i_begin;
-	int		i_last;
+	size_t	i_begin;
+	size_t	i_last;
 
+	if (!s1)
+		return (NULL);
 	i_begin = 0;
-	i_last = ft_strlen((char *)s1) - 1;
+	i_last = ft_strlen(s1) - 1;
 	while (ft_strchr(set, s1[i_begin]) != 0)
 		i_begin++;
-	if(i_begin > i_last)
+	if (i_begin > i_last)
 	{
 		ptr = ft_calloc(1, sizeof(char));
 		if (!ptr)
@@ -32,6 +34,6 @@ char	*ft_strtrim(char const *s1, char const *set)
 	}
 	while (ft_strrchr(set, s1[i_last]) != 0)
 		i_last--;
-	ptr = ft_substr(s1, i_begin, (size_t)i_last - i_begin + 1);
+	ptr = ft_substr(s1, i_begin, i_last - i_begin + 1);
 	return (ptr);
 }

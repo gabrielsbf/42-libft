@@ -14,16 +14,18 @@
 
 char	*ft_substr(char const *s, unsigned int start, size_t len)
 {
-	unsigned int	s_size;
-	unsigned int	i_ptr;
+	size_t			s_size;
+	size_t			i_ptr;
 	char			*ptr;
 
+	if (!s)
+		return (NULL);
 	i_ptr = 0;
-	s_size = (unsigned int)ft_strlen((char *)s);
+	s_size = ft_strlen(s);
 	if (s_size <= start)
 		len = 0;
 	ptr = (char *)malloc((len + 1) * sizeof(char));
-	if (!(ptr) || !(s))
+	if (!ptr)
 		return (NULL);
 	while (i_ptr < len && s_size > start)
 	{
