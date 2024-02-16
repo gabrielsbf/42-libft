@@ -30,7 +30,7 @@ $(BUILD_DIR)/%.o : %.c
 	$(CC) $(CFLAGS) -c $< -o $@
 
 clean:
-	rm -f $(OBJS)
+	rm -rf $(BUILD_DIR)/$(SRC_FOLDER)
 
 fclean: clean
 	rm -f $(LIBFT_A)
