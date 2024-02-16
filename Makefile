@@ -25,7 +25,7 @@ all: $(LIBFT_A)
 $(LIBFT_A): $(OBJS)
 	ar rc $(LIBFT_A) $(OBJS)
 
-$(BUILD_DIR)/%.o : $(SRCS)
+$(BUILD_DIR)/%.o : %.c
 	mkdir -p $(dir $@)
 	$(CC) $(CFLAGS) -c $< -o $@
 
