@@ -13,8 +13,13 @@
 #ifndef LIBFT_H
 # define LIBFT_H
 
+
 # include <stdlib.h>
 # include <unistd.h>
+# include <stdarg.h>
+
+# include "ft_printf.h"
+# include "get_next_line.h"
 
 char	*ft_strrchr(const char *s, int c);
 char	*ft_strnstr(const char *big, const char *little, size_t len);

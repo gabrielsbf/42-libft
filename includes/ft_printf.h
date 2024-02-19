@@ -13,8 +13,7 @@
 #ifndef FT_PRINTF_H
 # define FT_PRINTF_H
 
-# include "libft.h"
-# include <stdarg.h>
+
 
 int		ft_printf(const char *text, ...);
 void	ft_putnbu_r(unsigned int n, int fd, int *result);

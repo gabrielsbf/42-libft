@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../../includes/get_next_line.h"
+#include "../../../includes/libft.h"
 
 char	*ft_gnl_strjoin(char *main_str, char *complement)
 {
