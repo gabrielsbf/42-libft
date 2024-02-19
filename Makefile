@@ -3,6 +3,7 @@ NAME=libft.a
 LIBRARY_DIR = ./libraries
 
 LIBFT_A = $(LIBRARY_DIR)/$(NAME)
+
 CC=cc
 
 INCLUDE_FOLDER = ./includes
@@ -13,12 +14,11 @@ SRC_FOLDER = ./srcs
 
 BUILD_DIR = ./build
 
-SRCS = $(shell find $(SRC_FOLDER) -name '*.c')
+RAW_SRCS = $(shell find $(SRC_FOLDER))
+
+SRCS = $(filter %.c, $(RAW_SRCS))
 
 OBJS=$(SRCS:%.c=$(BUILD_DIR)/%.o)
-
-# test:
-# 	echo $(OBJS) > file.txt
 
 all: $(LIBFT_A)
 
