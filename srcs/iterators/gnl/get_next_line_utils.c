@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "get_next_line.h"
+#include "../../../includes/libft.h"
 
 char	*ft_gnl_strchr(char *s, int c)
 {
